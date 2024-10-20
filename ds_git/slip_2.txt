@@ -1,0 +1,55 @@
+#A) Write a Python program for Handling Missing Value. Replace missing value of salary, age column with 
+#mean of that column.(Use Data.csv file).
+import pandas as pd
+# Load the dataset from the CSV file
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\data.csv')
+# Calculate the mean of the "salary" and "age" columns
+mean_salary = data['Salary'].mean()
+mean_age = data['Age'].mean()
+# Replace missing values in the "salary" and "age" columns with their respective means
+data['Salary'].fillna(mean_salary, inplace=True)
+data['Age'].fillna(mean_age, inplace=True)
+# Display the first few rows of the modified dataset
+print(data)
+
+
+
+
+#B) Write a Python program to generate a line plot of name Vs salary
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load the dataset from the CSV file
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\data.csv')
+# Sort the data by "name" (optional, if not already sorted)
+data = data.sort_values(by='Name')
+# Create a line plot of "name" versus "salary"
+plt.figure(figsize=(12, 6))
+plt.plot(data['Name'], data['Salary'], marker='o', linestyle='-', color='b')
+plt.xlabel('Name')
+plt.ylabel('Salary')
+plt.title('Line Plot of Name vs Salary')
+plt.xticks(rotation=90) # Rotate the x-axis labels for better readability
+plt.grid(True)
+# Show the plot
+plt.show()
+
+
+
+
+#C)
+import pandas as pd
+import numpy as np
+# Load the dataset from the CSV file
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\heights_weights.csv')
+# Print the first 10 rows
+print("First 10 rows:")
+print(data.head(10))
+# Print the last 10 rows
+print("\nLast 10 rows:")
+print(data.tail(10))
+print("\nRandom 20 rows:")
+random_20_rows = data.sample(20)
+print(random_20_rows)
+# Display the shape of the dataset
+print("\nShape of the dataset:", data.shape)
+

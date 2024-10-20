@@ -1,0 +1,24 @@
+#Q.2) Write a program in python to perform following task : [15] 
+#Standardizing Data (transform them into a standard Gaussian distribution with a mean of 0 and a standard deviation of 
+#1) (Use winequality-red.csv)
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\winequality-red.csv')
+# Extract the features (exclude the target variable if present)
+feature = data.drop(columns=['quality'])
+# Standardize the data
+scaler = StandardScaler()
+std_data = scaler.fit_transform(feature)
+# Create a DataFrame from the standardized data
+std_df = pd.DataFrame(std_data, columns=feature.columns)
+# Display the first few rows of the standardized data and its summary statistics
+print("First few rows of standardized data:")
+print(std_df.head())
+print("\nSummary statistics of standardized data:")
+print(std_df.describe())
+
+
+
+
+

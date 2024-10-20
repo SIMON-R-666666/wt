@@ -1,0 +1,49 @@
+Q.2 A) Write a Python program to create box plots to see how each feature i.e. Sepal Length, Sepal Width, Petal 
+Length, Petal Width are distributed across the three species. (Use iris.csv dataset) 
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the iris dataset
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')
+
+# Set the style for the plots
+sns.set(style="whitegrid")
+
+# Create box plots for each feature across the three species
+features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
+
+for feature in features:
+    plt.figure(figsize=(10, 6))
+    sns.boxplot(x='species', y=feature, data=df)
+    plt.title(f'Box Plot of {feature} by Species')
+    plt.xlabel('Species')
+    plt.ylabel(feature)
+    plt.show()
+
+
+
+
+
+Q.2 B) Use the heights and weights dataset and load the dataset from a given csv file into a dataframe. Print the first, 
+last 5 rows and random 10 row
+
+import pandas as pd
+
+# Load the heights and weights dataset
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\heights_weights.csv')  
+
+# Print the first 5 rows
+print("First 5 rows:")
+print(df.head())
+
+# Print the last 5 rows
+print("\nLast 5 rows:")
+print(df.tail())
+
+# Print 10 random rows
+print("\nRandom 10 rows:")
+print(df.sample(n=10))
+
+

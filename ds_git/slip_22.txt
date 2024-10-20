@@ -1,0 +1,38 @@
+slip_22
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+
+# Load the dataset
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\winequality-red.csv')
+
+# Separate features from the target variable
+features = df.drop('quality', axis=1)
+
+# a. Rescaling using MinMaxScaler
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(features)
+scaled_df = pd.DataFrame(scaled_data, columns=features.columns)
+
+# Display the original and scaled DataFrame
+print("Original Data:")
+print(df.head())  # Display the original data
+print("\nScaled Data:")
+print(scaled_df.head())  # Display the scaled data
+
+# b. Standardizing Data using StandardScaler
+standard_scaler = StandardScaler()
+standardized_data = standard_scaler.fit_transform(features)
+standardized_df = pd.DataFrame(standardized_data, columns=features.columns)
+
+# Display the standardized DataFrame
+print("\nStandardized Data:")
+print(standardized_df.head())  # Display the standardized data
+
+# c. Normalizing Data using Normalizer
+normalizer = Normalizer()
+normalized_data = normalizer.fit_transform(features)
+normalized_df = pd.DataFrame(normalized_data, columns=features.columns)
+
+# Display the normalized DataFrame
+print("\nNormalized Data:")
+print(normalized_df.head())  # Display the normalized data

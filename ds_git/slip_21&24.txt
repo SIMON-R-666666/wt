@@ -1,0 +1,29 @@
+Q.2 A) Import dataset “iris.csv”. Write a Python program to create a Bar plot to get the frequency of the three species 
+of the Iris data
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the iris dataset
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')  
+
+# Count the frequency of each species
+species_counts = df['species'].value_counts()
+
+# Create a bar plot
+plt.figure(figsize=(8, 5))
+species_counts.plot(kind='bar', color=['blue', 'orange', 'green'])
+plt.title('Frequency of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)  # Rotate x labels for better readability
+plt.show()
+
+
+
+
+
+
+
+Q.2 B)Write a Python program to create a histogram of the three species of the Iris data.
+

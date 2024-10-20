@@ -1,0 +1,38 @@
+#slip_23
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Binarizer
+
+# Load the dataset
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\winequality-red.csv')
+
+# Separate features from the target variable
+features = df.drop('quality', axis=1)
+
+# a. Rescaling using MinMaxScaler
+minmax_scaler = MinMaxScaler()
+scaled_data = minmax_scaler.fit_transform(features)
+scaled_df = pd.DataFrame(scaled_data, columns=features.columns)
+
+# Display the original and scaled DataFrame
+print("Original Data:")
+print(df.head())  # Display the original data
+print("\nScaled Data:")
+print(scaled_df.head())  # Display the scaled data
+
+# b. Standardizing Data using StandardScaler
+standard_scaler = StandardScaler()
+standardized_data = standard_scaler.fit_transform(features)
+standardized_df = pd.DataFrame(standardized_data, columns=features.columns)
+
+# Display the standardized DataFrame
+print("\nStandardized Data:")
+print(standardized_df.head())  # Display the standardized data
+
+# c. Binarizing Data using Binarizer
+binarizer = Binarizer(threshold=0.5)  # Set the threshold value (adjust as needed)
+binarized_data = binarizer.fit_transform(features)
+binarized_df = pd.DataFrame(binarized_data, columns=features.columns)
+
+# Display the binarized DataFrame
+print("\nBinarized Data:")
+print(binarized_df.head())  # Display the binarized data

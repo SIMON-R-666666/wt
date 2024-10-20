@@ -1,0 +1,66 @@
+#Q.2 A) Generate a random array of 50 integers and display them using a line chart, scatter plot. Apply appropriate 
+#color, labels and styling options. [5] 
+
+import numpy as np
+import matplotlib.pyplot as plt
+data = np.random.randint(0, 100, 50)
+# Line chart
+plt.subplot(2,2,1)
+plt.plot(data, marker='o')
+plt.title('Line Chart')
+# Scatter plot
+plt.subplot(2,2,2)
+plt.scatter(range(50), data, marker='x')
+plt.title('Scatter Plot')
+# Histogram
+plt.subplot(2,2,3)
+plt.hist(data, bins=10)
+plt.title('Histogram')
+# Box plot
+plt.subplot(2,2,4)
+plt.boxplot(data, vert=True)
+plt.title('Box Plot')
+# Display the plots
+plt.tight_layout()
+plt.show()
+
+
+
+
+Q.2 B) Add two outliers to the above data and display the box plot. 
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate random data
+data = np.random.randint(0, 100, 50)
+
+# Add two outliers
+data_with_outliers = np.append(data, [150, 200])  # Adding outliers 150 and 200
+
+# Line chart
+plt.subplot(2, 2, 1)
+plt.plot(data_with_outliers, marker='o')
+plt.title('Line Chart')
+
+# Scatter plot
+plt.subplot(2, 2, 2)
+plt.scatter(range(len(data_with_outliers)), data_with_outliers, marker='x')
+plt.title('Scatter Plot')
+
+# Histogram
+plt.subplot(2, 2, 3)
+plt.hist(data_with_outliers, bins=10)
+plt.title('Histogram')
+
+# Box plot
+plt.subplot(2, 2, 4)
+plt.boxplot(data_with_outliers, vert=True)
+plt.title('Box Plot')
+
+# Display the plots
+plt.tight_layout()
+plt.show()
+
+
+

@@ -1,0 +1,19 @@
+slip_27
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+data = {
+ 'country': ['USA', 'Canada', 'UK', 'Germany', 'France', 'Canada', 'USA', 'UK', 'France', 'Germany'],
+ 'purchased': ['Yes', 'No', 'No', 'Yes', 'No', 'Yes', 'No', 'No', 'Yes', 'Yes']
+}
+df = pd.DataFrame(data)
+# Save the DataFrame to a CSV file named 'data.csv'
+df.to_csv(r'C:\Users\User\Desktop\vivek\ds\Data1.csv', index=False)
+print(df)
+# Apply one-hot encoding to the 'country' column
+df_one_hot_coding = pd.get_dummies(df, columns=['country'], prefix=['country'])
+print(df_one_hot_coding)
+# Initialize the LabelEncoder
+label_encoder = LabelEncoder()
+# Apply label encoding to the 'purchased' column
+df['purchased'] = label_encoder.fit_transform(df['purchased'])
+print(df)

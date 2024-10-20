@@ -1,0 +1,99 @@
+#Q.2 A) Generate a random array of 50 integers and display them using a line chart, scatter plot. Apply appropriate 
+#color, labels and styling options. [5] 
+
+import numpy as np
+import matplotlib.pyplot as plt
+data = np.random.randint(0, 100, 50)
+# Line chart
+plt.subplot(2,2,1)
+plt.plot(data, marker='o')
+plt.title('Line Chart')
+# Scatter plot
+plt.subplot(2,2,2)
+plt.scatter(range(50), data, marker='x')
+plt.title('Scatter Plot')
+# Histogram
+plt.subplot(2,2,3)
+plt.hist(data, bins=10)
+plt.title('Histogram')
+# Box plot
+plt.subplot(2,2,4)
+plt.boxplot(data, vert=True)
+plt.title('Box Plot')
+# Display the plots
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
+
+
+#Q.2 B) Write a Python program to create data frame containing column name, salary, department add 10 rows with 
+#some missing and duplicate values to the data frame. Also drop all null and empty values. Print the modified data 
+#frame. 
+
+import pandas as pd 
+import numpy as np 
+# Create an initial DataFrame 
+data = { 
+    "name": ["Alice", "Bob", "Charlie", "David", "Eve"], 
+    "salary": [50000, 60000, 70000, 55000, 62000], 
+    "department": ["HR", "Finance", "Engineering", "HR", "Engineering"] 
+} 
+df = pd.DataFrame(data) 
+# Adding 10 rows with missing and duplicate values 
+new_data = { 
+    "name": ["Alice", "Eve", "Frank", "Bob", "Grace", "Alice", "Bob", "Hannah", "David", "Eve"], 
+    "salary": [50000, np.nan, 75000, 60000, np.nan, 50000, 60000, np.nan, 55000, 62000], 
+    "department": ["HR", "Engineering", "Marketing", "Finance", "", "HR", "Finance", "", "HR", 
+    "Engineering"]}
+df = df.append(pd.DataFrame(new_data), ignore_index=True) 
+# Drop rows with null and empty values 
+df = df.dropna(subset=["name", "salary", "department"]).dropna(how="all") 
+# Print the modified DataFrame 
+print(df) 
+
+
+
+
+
+
+
+
+#Q.2 B) Write a Python program to create data frame containing column name, salary, department add 10 rows with 
+#some missing and duplicate values to the data frame. Also drop all null and empty values. Print the modified data 
+#frame. 
+import pandas as pd
+import numpy as np
+
+# Create an initial DataFrame
+data = {
+    "name": ["Alice", "Bob", "Charlie", "David", "Eve"],
+    "salary": [50000, 60000, 70000, 55000, 62000],
+    "department": ["HR", "Finance", "Engineering", "HR", "Engineering"]
+}
+df = pd.DataFrame(data)
+
+# Adding 10 rows with missing and duplicate values
+new_data = {
+    "name": ["Alice", "Eve", "Frank", "Bob", "Grace", "Alice", "Bob", "Hannah", "David", "Eve"],
+    "salary": [50000, np.nan, 75000, 60000, np.nan, 50000, 60000, np.nan, 55000, 62000],
+    "department": ["HR", "Engineering", "Marketing", "Finance", "", "HR", "Finance", "", "HR", "Engineering"]
+}
+# Append new rows using pd.concat() instead of append()
+df = pd.concat([df, pd.DataFrame(new_data)], ignore_index=True)
+
+# Replace empty strings with NaN for proper removal of missing data
+df.replace("", np.nan, inplace=True)
+
+# Drop rows with null values in 'name', 'salary', or 'department'
+df = df.dropna(subset=["name", "salary", "department"])
+
+# Remove duplicate rows
+df = df.drop_duplicates()
+
+# Print the modified DataFrame
+print(df)

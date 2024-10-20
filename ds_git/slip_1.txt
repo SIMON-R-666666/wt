@@ -1,0 +1,24 @@
+#A)
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load the Iris dataset from the CSV file
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')
+# Calculate the frequency of each species
+sp_cnt= data['species'].value_counts()
+# Create a pie chart
+plt.figure(figsize=(6, 6))
+plt.pie(sp_cnt, labels=sp_cnt.index, autopct='%1.1f%%', startangle=140)
+plt.title('Iris Species Frequency')
+# Display the pie chart
+plt.show()
+
+
+
+#B) Write a Python program to view basic statistical details of the data.(Use wineequality-red.csv) 
+import pandas as pd 
+# Load the winequality-red dataset from the CSV file 
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\winequality-red.csv') 
+# Display basic statistical details 
+statistical_details = data.describe() 
+# Print the statistical details to the console 
+print(statistical_details)

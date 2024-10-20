@@ -1,0 +1,48 @@
+Slip no 17:
+Q.2 A) Write a Python program to draw scatter plots to compare two features of the iris dataset [10] 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset from the provided CSV file
+
+iris_data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')
+
+# Scatter plot comparing sepal length and sepal width
+plt.figure(figsize=(8, 6))
+plt.scatter(iris_data['sepal_length'], iris_data['sepal_width'], c='blue', label='Sepal')
+
+# Set plot labels and title
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.title('Sepal Length vs Sepal Width')
+
+# Add legend and display the plot
+plt.legend()
+plt.show()
+
+
+
+
+
+
+Q.2 B) Write a Python program to create a data frame containing columns name, age , salary, department . Add 10 
+rows to the data frame. View the data frame
+import pandas as pd
+
+# Create a dictionary with sample data
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 
+             'Frank', 'Grace', 'Hannah', 'Ian', 'Jack'],
+    'age': [25, 30, 35, 28, 24, 
+            32, 29, 31, 27, 26],
+    'salary': [50000, 60000, 70000, 80000, 55000, 
+               75000, 72000, 68000, 59000, 62000],
+    'department': ['HR', 'Finance', 'IT', 'Marketing', 'Sales', 
+                   'IT', 'Finance', 'HR', 'Marketing', 'Sales']
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# View the DataFrame
+print(df)

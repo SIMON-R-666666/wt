@@ -1,0 +1,41 @@
+#A)Write a Python program to create box plots to see how each feature i.e. Sepal Length, Sepal Width, Petal Length, 
+#Petal Width are distributed across the three species. (Use iris.csv dataset) 
+
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load the Iris dataset from the CSV file
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')
+# Create a box plot for each feature across the three species
+plt.figure(figsize=(12, 8))
+# Sepal Length
+plt.subplot(2, 2, 1)
+data.boxplot(column='sepal_length', by='species')
+plt.title('Sepal Length by Species')
+# Sepal Width
+plt.subplot(2, 2, 2)
+data.boxplot(column='sepal_width', by='species')
+plt.title('Sepal Width by Species')
+# Petal Length
+plt.subplot(2, 2, 3)
+data.boxplot(column='petal_length', by='species')
+plt.title('Petal Length by Species')
+# Petal Width
+plt.subplot(2, 2, 4)
+data.boxplot(column='petal_width', by='species')
+plt.title('Petal Width by Species')
+# Show the box plots
+plt.show()
+
+
+
+#Q.2 B) Write a Python program to view basic statistical details of the data (Use Heights and Weights Dataset)
+import pandas as pd
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\heights_weights.csv')
+print("First few rows of the dataset:")
+print(data.head())
+print("\nBasic Statistical Details:")
+print(data.describe())
+print("\nAdditional Information:")
+print(data.info())
+
+

@@ -1,0 +1,11 @@
+import pandas as pd
+# Load the dataset from the CSV file (replace 'Data.csv' with the actual file path or URL)
+data = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\Data1.csv')
+# Apply One-Hot encoding to the 'Country' column
+data = pd.get_dummies(data, columns=['country'], prefix='country')
+# Apply Label encoding to the 'Purchased' column
+from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
+data['purchased'] = label_encoder.fit_transform(data['purchased'])
+# Print the updated DataFrame
+print(data)
