@@ -1,0 +1,76 @@
+slip no.23
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Operations</title>
+</head>
+<body>
+    <h2>Stack Operations</h2>
+    <form action="stack_operations.php" method="post">
+        <label for="operation">Choose an operation:</label>
+        <select id="operation" name="operation" required>
+            <option value="insert">Insert an element</option>
+            <option value="delete">Delete an element</option>
+            <option value="display">Display stack contents</option>
+        </select><br><br>
+
+        <label for="element">Element to insert (if applicable):</label>
+        <input type="text" id="element" name="element"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+<?php
+session_start();
+
+// Initialize stack in session if not already set
+if (!isset($_SESSION['stack'])) {
+    $_SESSION['stack'] = [];
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $operation = $_POST['operation'];
+
+    switch ($operation) {
+        case "insert":
+            // Insert an element into the stack
+            if (isset($_POST['element']) && !empty($_POST['element'])) {
+                array_push($_SESSION['stack'], $_POST['element']);
+                echo "Element '{$_POST['element']}' inserted into the stack.<br>";
+            } else {
+                echo "Please enter an element to insert.<br>";
+            }
+            break;
+
+        case "delete":
+            // Delete an element from the stack (pop)
+            if (!empty($_SESSION['stack'])) {
+                $poppedElement = array_pop($_SESSION['stack']);
+                echo "Element '$poppedElement' deleted from the stack.<br>";
+            } else {
+                echo "Stack is empty, nothing to delete.<br>";
+            }
+            break;
+
+        case "display":
+            // Display the contents of the stack
+            if (!empty($_SESSION['stack'])) {
+                echo "Stack contents:<br>";
+                foreach (array_reverse($_SESSION['stack']) as $element) {
+                    echo "$element<br>";
+                }
+            } else {
+                echo "Stack is empty.<br>";
+            }
+            break;
+
+        default:
+            echo "Invalid operation selected.<br>";
+            break;
+    }
+}
+?>

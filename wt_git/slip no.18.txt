@@ -1,0 +1,85 @@
+slip no.18
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associative Array Operations</title>
+</head>
+<body>
+    <h2>Associative Array Operations</h2>
+    <form action="associative_array.php" method="post">
+        <label for="arrayInput">Enter associative array elements (key:value) separated by commas:</label><br>
+        <input type="text" id="arrayInput" name="arrayInput" placeholder="key1:value1, key2:value2" required><br><br>
+
+        <label for="operation">Choose an operation:</label>
+        <select id="operation" name="operation" required>
+            <option value="reverse">Reverse Key-Value Pairs</option>
+            <option value="random">Traverse in Random Order</option>
+            <option value="convert">Convert Array Elements to Variables</option>
+            <option value="display">Display Elements with Keys</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect data from form
+    $arrayInput = $_POST['arrayInput'];
+    $operation = $_POST['operation'];
+
+    // Convert input string into an associative array
+    $pairs = explode(',', $arrayInput);
+    $assocArray = [];
+
+    foreach ($pairs as $pair) {
+        list($key, $value) = explode(':', trim($pair));
+        $assocArray[trim($key)] = trim($value);
+    }
+
+    // Perform the selected operation
+    switch ($operation) {
+        case "reverse":
+            // a. Reverse the order of key-value pairs
+            $reversedArray = array_flip($assocArray);
+            echo "Reversed key-value pairs:<br>";
+            print_r($reversedArray);
+            break;
+
+        case "random":
+            // b. Traverse elements in random order
+            echo "Array elements in random order:<br>";
+            $keys = array_keys($assocArray);
+            shuffle($keys);  // Shuffle the keys to traverse in random order
+            foreach ($keys as $key) {
+                echo "$key => " . $assocArray[$key] . "<br>";
+            }
+            break;
+
+        case "convert":
+            // c. Convert array elements into individual variables
+            extract($assocArray);
+            echo "Array elements converted to variables:<br>";
+            foreach ($assocArray as $key => $value) {
+                echo "Variable \$$key = $value<br>";
+            }
+            break;
+
+        case "display":
+            // d. Display the elements of an array along with key
+            echo "Array elements with keys:<br>";
+            foreach ($assocArray as $key => $value) {
+                echo "$key => $value<br>";
+            }
+            break;
+
+        default:
+            echo "Invalid operation selected.";
+            break;
+    }
+}
+?>

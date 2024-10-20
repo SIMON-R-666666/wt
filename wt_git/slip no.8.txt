@@ -1,0 +1,57 @@
+slip no.8
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Operations</title>
+</head>
+<body>
+    <h2>String Operations Form</h2>
+    <form action="process.php" method="post">
+        <label for="largeString">Enter large string:</label>
+        <input type="text" id="largeString" name="largeString" required><br><br>
+
+        <label for="smallString">Enter small string:</label>
+        <input type="text" id="smallString" name="smallString" required><br><br>
+
+        <label for="n">Enter number of characters for comparison:</label>
+        <input type="number" id="n" name="n" min="1" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect data from form
+    $largeString = $_POST['largeString'];
+    $smallString = $_POST['smallString'];
+    $n = intval($_POST['n']);
+
+    // a. Find whether the small string appears at the start of the large string
+    if (strpos($largeString, $smallString) === 0) {
+        echo "The small string appears at the start of the large string.<br>";
+    } else {
+        echo "The small string does not appear at the start of the large string.<br>";
+    }
+
+    // b. Find the position of the small string in the large string
+    $position = strpos($largeString, $smallString);
+    if ($position !== false) {
+        echo "The small string appears at position $position in the large string.<br>";
+    } else {
+        echo "The small string does not appear in the large string.<br>";
+    }
+
+    // c. Compare both strings for first n characters (case-insensitive)
+    if (strncasecmp($largeString, $smallString, $n) == 0) {
+        echo "The first $n characters of both strings are equal (case-insensitive).<br>";
+    } else {
+        echo "The first $n characters of both strings are not equal.<br>";
+    }
+}
+?>
+

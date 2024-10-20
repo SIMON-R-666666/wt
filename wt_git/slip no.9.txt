@@ -1,0 +1,54 @@
+slip no.9
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Separator Operations</title>
+</head>
+<body>
+    <h2>String Operations with Separator</h2>
+    <form action="separator_process.php" method="post">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" name="inputString" required><br><br>
+
+        <label for="separator">Choose a separator:</label>
+        <select id="separator" name="separator" required>
+            <option value="#">#</option>
+            <option value="|">|</option>
+            <option value="%">%</option>
+        </select><br><br>
+
+        <label for="newSeparator">Enter a new separator for replacement:</label>
+        <input type="text" id="newSeparator" name="newSeparator" maxlength="1" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect data from form
+    $inputString = $_POST['inputString'];
+    $separator = $_POST['separator'];
+    $newSeparator = $_POST['newSeparator'];
+
+    // a. Split the string into separate words using the given separator
+    $wordsArray = explode($separator, $inputString);
+    echo "The string split into words:<br>";
+    foreach ($wordsArray as $word) {
+        echo $word . "<br>";
+    }
+
+    // b. Replace all occurrences of the separator in the string with a new separator
+    $replacedString = str_replace($separator, $newSeparator, $inputString);
+    echo "String after replacing '$separator' with '$newSeparator':<br>";
+    echo $replacedString . "<br>";
+
+    // c. Find the last word in the given string
+    $lastWord = end($wordsArray);
+    echo "The last word in the string is: $lastWord";
+}
+?>
