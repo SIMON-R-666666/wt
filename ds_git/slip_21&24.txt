@@ -27,3 +27,15 @@ plt.show()
 
 Q.2 B)Write a Python program to create a histogram of the three species of the Iris data.
 
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r'C:\Users\User\Desktop\vivek\ds\iris.csv')
+
+
+plt.hist(df.species,bins=3)
+plt.title('frequency of iris species')
+plt.xlabel('species')
+plt.ylabel('Frequency')
+plt.xticks(rotation=0)
+plt.show()
